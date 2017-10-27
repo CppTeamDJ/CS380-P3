@@ -35,7 +35,7 @@ public class Ipv4Client {
                 packet[1]= 0;
                 // Total Length
                 packet[2]= (byte)((packet.length & 0xFF00)>>>8);
-                packet[3]= (byte)(packet.length & 0x00FF);
+                packet[3]= (byte)(packet.length & 0xFF);
                 //Identification
                 packet[4]= 0;
                 packet[5]= 0;
