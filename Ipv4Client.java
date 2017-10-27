@@ -24,7 +24,7 @@ public class Ipv4Client {
             System.out.println("Connected to server.");
             OutputStream out = socket.getOutputStream();
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-            for (int k = 0 ; k < 12 ; k++){
+            for (int i = 0 ; i < 12 ; i++){
                 short length = (short)(20 + dataLength);
                 packet = new byte[length];
                 System.out.println("Data Length: " + dataLength);
@@ -53,15 +53,15 @@ public class Ipv4Client {
                 packet[15]= 0X5b;
                 //Desination Adress
                 packet[16] = (byte) 18;
-                packet[17] = (byte) 221;
+                packet[17] = (byte) 0xDD;
                 packet[18] = (byte) 102;
                 packet[19] = (byte) 182;
                 short checksum = checksum(packet);
                 packet[10]= (byte)((checksum & 0xff00)>>>8);
                 packet[11]= (byte)(checksum & 0xff);
 
-                for (int i = 0; i < packet.length; i++)
-                    out.write(packet[i]);
+                for (int j = 0; j < packet.length; j++)
+                    out.write(packet[j]);
 
                 System.out.println( in.readLine()+"\n");
                 dataLength *= 2;
