@@ -19,7 +19,6 @@ import java.io.BufferedReader;
 public class Ipv4Client {
     public static void main(String[] args)throws IOException{
         byte[] packet ;
-        byte[] destAddr ;
         int dataLength = 2;
         try (Socket socket = new Socket("18.221.102.182", 38003)) {
             System.out.println("Connected to server.");
