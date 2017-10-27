@@ -47,18 +47,16 @@ public class Ipv4Client {
                 packet[8]= 50;
                 //Protocol
                 packet[9]= 6;
-                //CheckSum
-                packet[10]= 0;
-                packet[11]= 0;
-                //Source/Destination/Data (random numbers)
+                //Source Address (random numbers)
                 packet[12]= 0x6A;
                 packet[13]= 0X4f;
-                packet[14]= 0;
+                packet[14]= 0x40;
                 packet[15]= 0X5b;
-                destAddr  = socket.getInetAddress().getAddress();
-                for (int i = 0,j = 16 ; i < destAddr.length; i++, j++)
-                    packet[j] = destAddr[i] ;
-
+                //Desination Adress
+                packet[16] = (byte) 18;
+                packet[17] = (byte) 221;
+                packet[18] = (byte) 102;
+                packet[19] = (byte) 182;
                 short checksum = checksum(packet);
                 packet[10]= (byte)((checksum & 0xff00)>>>8);
                 packet[11]= (byte)(checksum & 0xff);
